@@ -8,8 +8,8 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
 class AndroidApplicationPlugin: Plugin<Project> {
-    override fun apply(project: Project) {
-        with(project) {
+    override fun apply(target: Project) {
+        with(target) {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")

@@ -1,24 +1,9 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.example.foodreminder.application")
 }
 
 android {
     namespace = "com.example.foodreminder"
-    compileSdk = 34
-
-    defaultConfig {
-        applicationId = "com.example.foodreminder"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
 
     buildTypes {
         release {

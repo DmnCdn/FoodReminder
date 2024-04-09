@@ -13,7 +13,7 @@ lifecycleRuntimeKtx = "2.7.0"
 room = "2.6.1"
 jetbrainsKotlinJvm = "1.9.23"
 
-# Gradle
+# Gradle plugins
 gradlePlugin = "8.1.4"
 
 # Application configuration
