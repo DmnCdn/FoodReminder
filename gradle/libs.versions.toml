@@ -59,4 +59,5 @@ jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains
 
 # custom plugins
 foodReminderApplication = { id = "com.example.foodreminder.application", version.ref = "customPlugin" }
+foodReminderAndroidLibrary = { id = "com.example.foodreminder.android.library", version.ref = "customPlugin" }
 

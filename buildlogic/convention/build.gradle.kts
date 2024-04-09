@@ -10,6 +10,12 @@ gradlePlugin {
             version = libs.versions.customPlugin.get()
             implementationClass = "com.example.foodreminder.convention.plugins.AndroidApplicationPlugin"
         }
+
+        register("library") {
+            id = "com.example.foodreminder.android.library"
+            version = libs.versions.customPlugin.get()
+            implementationClass = "com.example.foodreminder.convention.plugins.AndroidLibraryPlugin"
+        }
     }
 }
 

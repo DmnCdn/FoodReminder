@@ -34,7 +34,6 @@ class AndroidLibraryPlugin: Plugin<Project> {
                 with(buildTypes) {
                     getByName("release") {
                         isMinifyEnabled = true
-                        isShrinkResources = true
                         isDebuggable = false
                         proguardFiles(
                             getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -43,7 +42,6 @@ class AndroidLibraryPlugin: Plugin<Project> {
                     }
                 }
             }
-
         }
     }
 }
