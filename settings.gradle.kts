@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "FoodReminder"
 include(":app")
- 
+include(":datasource")
+include(":model")
