@@ -6,6 +6,7 @@ import com.example.foodreminder.convention.utils.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 class AndroidApplicationPlugin: Plugin<Project> {
     override fun apply(target: Project) {
@@ -13,6 +14,10 @@ class AndroidApplicationPlugin: Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+            }
+
+            with(kotlinExtension) {
+                jvmToolchain(libs.getVersionByName("jvm").toInt())
             }
 
             with(extensions.getByType<AppExtension>()) {
@@ -28,6 +33,24 @@ class AndroidApplicationPlugin: Plugin<Project> {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                     vectorDrawables {
                         useSupportLibrary = true
+                    }
+                }
+
+                with(buildTypes) {
+                    getByName("release") {
+                        isMinifyEnabled = true
+                        isShrinkResources = true
+                        isDebuggable = false
+                        proguardFiles(
+                            getDefaultProguardFile("proguard-android-optimize.txt"),
+                            "proguard-rules.pro"
+                        )
+                    }
+                }
+
+                with(packagingOptions) {
+                    resources {
+                        excludes += "/META-INF/{AL2.0,LGPL2.1}"
                     }
                 }
             }
