@@ -1,5 +1,5 @@
 plugins {
-    id("com.example.foodreminder.application")
+    alias(libs.plugins.foodReminderApplication)
 }
 
 android {

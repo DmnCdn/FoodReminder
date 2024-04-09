@@ -15,6 +15,7 @@ jetbrainsKotlinJvm = "1.9.23"
 
 # Gradle plugins
 gradlePlugin = "8.1.4"
+customPlugin = "1.0.0"
 
 # Application configuration
 compileSdk = "android-34"
@@ -55,4 +56,7 @@ androidx-room = { id = "androidx.room", version.ref = "room" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+
+# custom plugins
+foodReminderApplication = { id = "com.example.foodreminder.application", version.ref = "customPlugin" }
 

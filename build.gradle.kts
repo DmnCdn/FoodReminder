@@ -4,5 +4,5 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
-    id("com.example.foodreminder.application") apply false
+    alias(libs.plugins.foodReminderApplication) apply false
 }
