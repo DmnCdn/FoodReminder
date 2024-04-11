@@ -4,6 +4,13 @@ plugins {
 
 android {
     namespace = "com.example.foodreminder.ui.products"
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
 }
 
 dependencies {
