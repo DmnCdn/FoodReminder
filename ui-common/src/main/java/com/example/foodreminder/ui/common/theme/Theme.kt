@@ -1,4 +1,4 @@
-package com.example.foodreminder.ui.theme
+package com.example.foodreminder.ui.common.theme
 
 import android.app.Activity
 import android.os.Build
