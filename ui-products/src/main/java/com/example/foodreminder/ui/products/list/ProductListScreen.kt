@@ -3,18 +3,16 @@ package com.example.foodreminder.ui.products.list
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
@@ -61,16 +58,14 @@ fun ProductListScreenContent() {
                 enter = fadeIn(),
                 exit = fadeOut(),
             ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    tint = MaterialTheme.colorScheme.onPrimary,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .clickable { /* todo */ }
-                        .background(color = MaterialTheme.colorScheme.primary)
-                        .padding(8.dp)
-                )
+                FloatingActionButton(
+                    onClick = { /*TODO*/ },
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null,
+                    )
+                }
             }
         }
     ) { paddingValues ->
@@ -81,7 +76,7 @@ fun ProductListScreenContent() {
                 modifier = Modifier.nestedScroll(nestedScrollConnection),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
-                items(30) { id ->
+                items(30, key = { it }) { id ->
                     val productId = id + 1
                     ProductItem(
                         name = "Product number $productId",
