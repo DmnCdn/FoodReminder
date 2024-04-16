@@ -1,4 +1,4 @@
-package com.example.foodreminder.ui.theme
+package com.example.foodreminder.ui.common.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
