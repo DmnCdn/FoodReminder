@@ -7,4 +7,6 @@ plugins {
     alias(libs.plugins.foodReminderApplication) apply false
     alias(libs.plugins.foodReminderAndroidLibrary) apply false
     alias(libs.plugins.foodReminderCompose) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.hilt) apply false
 }
