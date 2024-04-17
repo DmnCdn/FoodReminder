@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.foodReminderApplication)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -23,4 +25,7 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+
+    implementation(libs.hilt.core)
+    ksp(libs.hilt.compiler)
 }
