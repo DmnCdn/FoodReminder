@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
@@ -28,6 +29,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.foodreminder.ui.common.navigation.NavigationItem
 import com.example.foodreminder.ui.common.theme.FoodReminderTheme
@@ -38,6 +40,8 @@ fun ProductListScreen(
     navController: NavController,
     viewModel: ProductListViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     val onViewAction: (ProductListViewAction) -> Unit = remember(navController) {
         { action ->
             when (action) {
@@ -47,12 +51,13 @@ fun ProductListScreen(
         }
     }
 
-    ProductListScreenContent(onViewAction = onViewAction)
+    ProductListScreenContent(onViewAction = onViewAction, viewState = state)
 }
 
 @Composable
 fun ProductListScreenContent(
     onViewAction: (ProductListViewAction) -> Unit,
+    viewState: ProductListViewState
 ) {
     var isScrollingDown by remember { mutableStateOf(false) }
     val nestedScrollConnection = remember {
@@ -93,16 +98,18 @@ fun ProductListScreenContent(
                 modifier = Modifier.nestedScroll(nestedScrollConnection),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
-                items(30) { id ->
-                    val productId = id + 1
+                itemsIndexed(
+                    items = viewState.products,
+                    key = { _, product -> product.id }
+                ) { index, product ->
                     ProductItem(
-                        name = "Product number $productId",
-                        quantity = 50,
-                        showBottomDivider = productId < 30,
+                        name = product.name,
+                        quantity = product.amount,
+                        showBottomDivider = index < viewState.products.lastIndex,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                onViewAction(ProductListViewAction.OnProductClicked(productId))
+                                onViewAction(ProductListViewAction.OnProductClicked(product.id))
                             }
                             .padding(top = 16.dp)
                             .padding(horizontal = 16.dp),
@@ -118,6 +125,9 @@ fun ProductListScreenContent(
 @Composable
 private fun PreviewProductListScreen() {
     FoodReminderTheme {
-        ProductListScreenContent(onViewAction = {})
+        ProductListScreenContent(
+            onViewAction = {},
+            viewState = ProductListViewState()
+        )
     }
 }
