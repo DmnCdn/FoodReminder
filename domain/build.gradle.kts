@@ -9,8 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":model"))
-
     implementation(libs.hilt.core)
     ksp(libs.hilt.compiler)
 }
