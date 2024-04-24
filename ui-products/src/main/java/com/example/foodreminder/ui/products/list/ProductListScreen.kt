@@ -27,16 +27,27 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.foodreminder.ui.common.navigation.NavigationItem
 import com.example.foodreminder.ui.common.theme.FoodReminderTheme
 import com.example.foodreminder.ui.products.list.components.ProductItem
 
 @Composable
-fun ProductListScreen() {
-    ProductListScreenContent()
+fun ProductListScreen(navController: NavController) {
+    ProductListScreenContent(
+        onViewAction = { action ->
+            when (action) {
+                ProductListViewAction.OnNewProduct -> navController.navigate(route = NavigationItem.AddEditProduct.route)
+                is ProductListViewAction.OnProductClicked -> navController.navigate(route = NavigationItem.AddEditProduct.route)
+            }
+        }
+    )
 }
 
 @Composable
-fun ProductListScreenContent() {
+fun ProductListScreenContent(
+    onViewAction: (ProductListViewAction) -> Unit,
+) {
     var isScrollingDown by remember { mutableStateOf(false) }
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
@@ -59,7 +70,7 @@ fun ProductListScreenContent() {
                 exit = fadeOut(),
             ) {
                 FloatingActionButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { onViewAction(ProductListViewAction.OnNewProduct) },
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -76,7 +87,7 @@ fun ProductListScreenContent() {
                 modifier = Modifier.nestedScroll(nestedScrollConnection),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
-                items(30, key = { it }) { id ->
+                items(30) { id ->
                     val productId = id + 1
                     ProductItem(
                         name = "Product number $productId",
@@ -84,7 +95,9 @@ fun ProductListScreenContent() {
                         showBottomDivider = productId < 30,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { /* todo */ }
+                            .clickable {
+                                onViewAction(ProductListViewAction.OnProductClicked(productId))
+                            }
                             .padding(top = 16.dp)
                             .padding(horizontal = 16.dp),
                         backgroundColor = Color.Transparent,
@@ -99,6 +112,6 @@ fun ProductListScreenContent() {
 @Composable
 private fun PreviewProductListScreen() {
     FoodReminderTheme {
-        ProductListScreenContent()
+        ProductListScreenContent(onViewAction = {})
     }
 }

@@ -25,10 +25,10 @@ class MainActivity : ComponentActivity() {
                     startDestination = NavigationItem.ProductList.route
                 ) {
                     composable(route = NavigationItem.ProductList.route) {
-                        ProductListScreen()
+                        ProductListScreen(navController = navController)
                     }
                     composable(route = NavigationItem.AddEditProduct.route) {
-                        AddEditProductScreen()
+                        AddEditProductScreen(navController = navController)
                     }
                 }
             }
