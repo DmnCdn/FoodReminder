@@ -27,21 +27,27 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.foodreminder.ui.common.navigation.NavigationItem
 import com.example.foodreminder.ui.common.theme.FoodReminderTheme
 import com.example.foodreminder.ui.products.list.components.ProductItem
 
 @Composable
-fun ProductListScreen(navController: NavController) {
-    ProductListScreenContent(
-        onViewAction = { action ->
+fun ProductListScreen(
+    navController: NavController,
+    viewModel: ProductListViewModel = hiltViewModel()
+) {
+    val onViewAction: (ProductListViewAction) -> Unit = remember(navController) {
+        { action ->
             when (action) {
                 ProductListViewAction.OnNewProduct -> navController.navigate(route = NavigationItem.AddEditProduct.route)
                 is ProductListViewAction.OnProductClicked -> navController.navigate(route = NavigationItem.AddEditProduct.route)
             }
         }
-    )
+    }
+
+    ProductListScreenContent(onViewAction = onViewAction)
 }
 
 @Composable
