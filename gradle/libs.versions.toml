@@ -11,7 +11,7 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 kotlin = "1.9.23"
 ksp = "1.9.23-1.0.20"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycle = "2.8.0-beta01"
 navigation = "2.7.7"
 room = "2.6.1"
 jetbrainsKotlinJvm = "1.9.23"
@@ -35,7 +35,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-room-core = { module = "androidx.room:room-runtime", version.ref = "room" }
