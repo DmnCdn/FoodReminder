@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductListViewModel @Inject internal constructor(
+internal class ProductListViewModel @Inject constructor(
     getProductListUseCase: GetProductListUseCase,
 ) : ViewModel() {
 

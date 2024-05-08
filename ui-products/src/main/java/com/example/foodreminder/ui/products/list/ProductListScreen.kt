@@ -36,10 +36,8 @@ import com.example.foodreminder.ui.common.theme.FoodReminderTheme
 import com.example.foodreminder.ui.products.list.components.ProductItem
 
 @Composable
-fun ProductListScreen(
-    navController: NavController,
-    viewModel: ProductListViewModel = hiltViewModel()
-) {
+fun ProductListScreen(navController: NavController) {
+    val viewModel: ProductListViewModel = hiltViewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     val onViewAction: (ProductListViewAction) -> Unit = remember(navController) {
@@ -55,7 +53,7 @@ fun ProductListScreen(
 }
 
 @Composable
-fun ProductListScreenContent(
+internal fun ProductListScreenContent(
     onViewAction: (ProductListViewAction) -> Unit,
     viewState: ProductListViewState
 ) {
